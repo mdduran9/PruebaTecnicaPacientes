@@ -1,0 +1,57 @@
+###########################
+# .NET Core / Visual Studio
+###########################
+
+# Carpetas de compilación y temporales
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Archivos de la solución y del usuario de Visual Studio
+*.suo
+*.user
+*.useros
+*.sln.docstates
+
+# Archivos de respaldo y configuración local
+*.bak
+*~
+*.log
+*.sql
+*.cache
+*.vs/          # Directorio oculto de la solución (VS)
+
+# NuGet
+# Paquetes restaurados (normalmente ya no es necesario, pero es un buen seguro)
+**/packages/*
+# Paquetes generados
+*.nupkg
+*.snupkg
+
+# Entity Framework Core
+# Archivos de conexión temporal si se usa un DB local
+ef.db
+
+# VS Code / Otros editores
+.vscode/
+
+# Configuración de IIS Express
+# (Contiene rutas locales que no deberían subirse)
+[Pp]roperties/launchSettings.json
+
+# Archivos de pruebas de cobertura
+*.codecoverage
+*.rptproj
+
+# Certificados
+*.pfx
+
+# Tokens de herramientas
+.toolstemp
+
+# Archivos de configuración de usuario/máquina
+appsettings.Development.json
+appsettings.Staging.json
+appsettings.Production.json
+appsettings.Local.json
