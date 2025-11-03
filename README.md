@@ -45,7 +45,8 @@ La API utiliza Microsoft SQL Server como sistema gestor de base de datos.
 ```json
 "Server=sqlserver.cloud.net;Database=PatientsDb;User Id=admin;Password=1234;"
 
-## Ejecución del proyecto
+
+## 🗄️ Ejecución del proyecto
   
   1. Clona este reporsitorio: git clone https://github.com/tu-usuario/PruebaTecnicaPacientes.git
   2. Instala dependencias: dotnet restore
