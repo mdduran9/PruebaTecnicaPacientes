@@ -1,31 +1,18 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace PatientsApi.Dtos
+try
 {
-    public class CreatePatientDto
+    _context.AuditLogs.Add(new AuditLog
     {
-        [Required, StringLength(10)]
-        public string DocumentType { get; set; } = null!;
-
-        [Required, StringLength(20)]
-        public string DocumentNumber { get; set; } = null!;
-
-        [Required, StringLength(80)]
-        public string FirstName { get; set; } = null!;
-
-        [Required, StringLength(80)]
-        public string LastName { get; set; } = null!;
-
-        [Required]
-        public DateTime BirthDate { get; set; }   
-
-        [StringLength(20)]
-        public string? PhoneNumber { get; set; }
-
-        [EmailAddress]
-        public string? Email { get; set; }
-
-        
-    }
+        Entity = "Patient",
+        EntityId = patient.PatientId,
+        Action = "CREATE",
+        Username = Environment.UserName,
+        CreatedAt = DateTime.UtcNow,
+        Changes = $"Paciente creado: {patient.FirstName} {patient.LastName}"
+    });
+    await _context.SaveChangesAsync();
 }
+catch (Exception ex)
+{
+    Console.WriteLine($"Error guardando auditoría: {ex.Message}");
+}
+
