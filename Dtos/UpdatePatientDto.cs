@@ -26,7 +26,5 @@ namespace PatientsApi.Dtos
         [EmailAddress]
         public string? Email { get; set; }
 
-        // RowVersion como base64 para concurrencia
-        public string RowVersion { get; set; } = null!;
     }
 }

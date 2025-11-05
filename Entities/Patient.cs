@@ -30,7 +30,6 @@ namespace PatientsApi.Entities
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; } = Array.Empty<byte>();
+
     }
 }

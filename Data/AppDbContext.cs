@@ -14,9 +14,6 @@ namespace PatientsApi.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Patient>()
-                .Property(p => p.RowVersion)
-                .IsRowVersion();
         }
     }
 }

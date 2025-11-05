@@ -130,7 +130,7 @@ namespace PatientsApi.Controllers
             return Ok(_mapper.Map<PatientDto>(patient));
         }
 
-        // PUT /api/v1/patients/{id}
+        // PUT /api/v1/patients/{id} ACTUALIZACION COMPLETA
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdatePatientDto dto)
         {
@@ -150,7 +150,7 @@ namespace PatientsApi.Controllers
             if (duplicate)
                 return Conflict(new { message = "Otro paciente con el mismo documento ya existe." });
 
-            // Actualizar propiedades
+            // Actualizar datos
             patient.DocumentType = dto.DocumentType;
             patient.DocumentNumber = dto.DocumentNumber;
             patient.FirstName = dto.FirstName;
@@ -161,16 +161,6 @@ namespace PatientsApi.Controllers
 
             try
             {
-                var clientRowVersion = Convert.FromBase64String(dto.RowVersion);
-                _context.Entry(patient).Property("RowVersion").OriginalValue = clientRowVersion;
-            }
-            catch
-            {
-                return BadRequest(new { message = "Valor de RowVersion inválido." });
-            }
-
-            try
-            {
                 await _context.SaveChangesAsync();
 
                 _context.AuditLogs.Add(new AuditLog
@@ -178,7 +168,7 @@ namespace PatientsApi.Controllers
                     Entity = "Patient",
                     EntityId = patient.PatientId,
                     Action = "UPDATE",
-                    Username = Environment.UserName,
+                    Username = !string.IsNullOrEmpty(Environment.UserName) ? Environment.UserName : "System",
                     CreatedAt = DateTime.UtcNow,
                     Changes = $"Paciente actualizado: {patient.FirstName} {patient.LastName}"
                 });
